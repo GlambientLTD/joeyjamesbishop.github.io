@@ -152,7 +152,7 @@ h2, .project-title {
   bottom: 0;
   left: 0;
   width: 0;
-  height: 1px;
+  height: 2px;
   background: rgba(255,255,255,0.85);
   transition: width 0.35s ease-in-out;
 }
@@ -172,7 +172,7 @@ h2, .project-title {
 }
 
 .work-nav-btn:hover .nav-arrow {
-  opacity: 0.7;
+  opacity: 0.85;
   transform: translateX(0);
 }
 
