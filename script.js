@@ -91,15 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Event delegation for opening lightbox
-  document.querySelector(".portfolio").addEventListener("click", (e) => {
-    if (e.target.matches(".image-row img, .image-row video")) {
-      const row = e.target.closest(".image-row");
-      currentGroup = [...row.querySelectorAll("img, video")];
-      currentIndex = currentGroup.indexOf(e.target);
-      showMedia(currentIndex);
-      lightbox.style.display = "flex";
-    }
-  });
+  const portfolioEl = document.querySelector(".portfolio");
+  if (portfolioEl) {
+    portfolioEl.addEventListener("click", (e) => {
+      if (e.target.matches(".image-row img, .image-row video")) {
+        const row = e.target.closest(".image-row");
+        currentGroup = [...row.querySelectorAll("img, video")];
+        currentIndex = currentGroup.indexOf(e.target);
+        showMedia(currentIndex);
+        lightbox.style.display = "flex";
+      }
+    });
+  }
 
   // Carousel scroll arrows
   document.querySelectorAll(".image-row-wrapper").forEach((wrapper) => {
