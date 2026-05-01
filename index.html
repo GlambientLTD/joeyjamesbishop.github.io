@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta http-equiv="cache-control" content="max-age=31536000" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
   <title>Joey's Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 
@@ -11,7 +11,20 @@
 </head>
 <body>
   <section class="hero-section" id="hero">
-    <img class="hero-image" src="images/faye-lily-2.jpg" alt="Hero portrait" loading="eager" fetchpriority="high">
+    <!-- Dominant image – left column, full height -->
+    <div class="hero-item hero-item--main">
+      <img class="hero-img" src="images/faye-lily-2.jpg" alt="Hero portrait" loading="eager" fetchpriority="high">
+    </div>
+    <!-- Secondary images – right column, stacked -->
+    <div class="hero-item hero-item--top-right">
+      <img class="hero-img" src="images/gab-cool-aw-1.jpg" alt="BSHP – model with tilted head" loading="eager">
+    </div>
+    <div class="hero-item hero-item--mid-right">
+      <img class="hero-img" src="images/faye-street-filmy-1.jpg" alt="Double Exposure w/ Faye – green tone" loading="lazy" decoding="async">
+    </div>
+    <div class="hero-item hero-item--bot-right">
+      <img class="hero-img" src="images/faye-13-boarder.jpg" alt="Double Exposure w/ Faye – red/blue contrast" loading="lazy" decoding="async">
+    </div>
   </section>
 
   <div class="hero-intro">
@@ -25,7 +38,7 @@
   </section>
 
   <nav class="work-nav" aria-label="Work categories">
-    <a href="editorial.html" class="work-nav-btn">Editorial<span class="nav-arrow">&#8594;</span></a>
+    <a href="editorial.html" class="work-nav-btn">Editorial / Music<span class="nav-arrow">&#8594;</span></a>
     <a href="commercial.html" class="work-nav-btn">Commercial<span class="nav-arrow">&#8594;</span></a>
   </nav>
 

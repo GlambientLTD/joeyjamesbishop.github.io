@@ -1,21 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Hero parallax: image moves at ~40% of scroll speed ---
-  const heroImg = document.querySelector('.hero-image');
+  // --- Hero parallax: each grid image at its own subtle speed ---
   const heroSection = document.querySelector('.hero-section');
-  if (heroImg && heroSection) {
+  const heroImgs = document.querySelectorAll('.hero-img');
+  // Different rates create a sense of depth; ?? 0.2 is a safe fallback for any extra images
+  const heroRates = [0.25, 0.12, 0.18, 0.15];
+  if (heroSection && heroImgs.length) {
     let rafPending = false;
-    const updateParallax = () => {
+    const updateHeroParallax = () => {
       const scrolled = window.scrollY;
-      // Only animate while the hero is in/near the viewport
       if (scrolled <= heroSection.offsetHeight * 1.5) {
-        heroImg.style.transform = `translateY(${scrolled * 0.4}px)`;
+        heroImgs.forEach((img, i) => {
+          img.style.transform = `translateY(${scrolled * (heroRates[i] ?? 0.2)}px)`;
+        });
       }
       rafPending = false;
     };
     window.addEventListener('scroll', () => {
       if (!rafPending) {
         rafPending = true;
-        requestAnimationFrame(updateParallax);
+        requestAnimationFrame(updateHeroParallax);
       }
     }, { passive: true });
   }
