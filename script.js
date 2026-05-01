@@ -43,6 +43,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
+  // --- Feature section parallax (3 full-height sections after tycho) ---
+  document.querySelectorAll('.feature-section').forEach((section) => {
+    const img = section.querySelector('.feature-img');
+    if (!img) return;
+    const sectionTop = section.offsetTop;
+    let rafPending = false;
+    const update = () => {
+      const offset = (window.scrollY - sectionTop) * 0.15;
+      img.style.transform = `translateY(${offset}px)`;
+      rafPending = false;
+    };
+    update();
+    window.addEventListener('scroll', () => {
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+  });
+
   // --- Create lightbox ---
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
