@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -6,19 +10,54 @@ body {
   font-weight: 300;
 }
 
-/* === Hero parallax section === */
+/* Prevent double-tap zoom on interactive elements (preserves pinch-to-zoom for accessibility) */
+a, button, .image-row-wrapper {
+  touch-action: manipulation;
+}
+
+/* === Hero editorial grid section === */
 .hero-section {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 62% 38%;
+  grid-template-rows: repeat(3, calc(100vh / 3));
 }
 
-.hero-image {
+/* Individual hero cells */
+.hero-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-item--main {
+  grid-column: 1;
+  grid-row: 1 / 4;
+}
+
+.hero-item--top-right {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.hero-item--mid-right {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.hero-item--bot-right {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* Each hero image: oversized for parallax room */
+.hero-img {
   position: absolute;
-  top: -15%;
+  top: -12%;
   left: 0;
   width: 100%;
-  height: 130%;
+  height: 124%;
   object-fit: cover;
   object-position: center top;
   will-change: transform;
@@ -275,25 +314,40 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* Navigation arrows */
+/* Navigation arrows – minimal CSS chevrons */
 .image-nav {
-  color: #fff;
+  color: transparent;
   background: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2rem;
+  font-size: 0;
   border: none;
   cursor: pointer;
   z-index: 10;
-  padding: 0.6rem 0.9rem;
-  transition: opacity 0.2s ease;
+  padding: 0.8rem;
+  opacity: 0.35;
+  transition: opacity 0.25s ease-in-out;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.image-nav:hover {
-  opacity: 0.9;
+.image-nav::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 1.5px solid rgba(255,255,255,0.95);
+  border-right: 1.5px solid rgba(255,255,255,0.95);
+  flex-shrink: 0;
 }
-.image-nav.left { left: 0; }
-.image-nav.right { right: 0; }
+.image-nav.left  { left: 6px; }
+.image-nav.right { right: 6px; }
+.image-nav.left::before  { transform: rotate(-135deg) translate(2px, -2px); }
+.image-nav.right::before { transform: rotate(45deg)   translate(-2px, 2px); }
+.image-nav:hover { opacity: 1; }
 
 /* === Lightbox === */
 .lightbox {
@@ -342,6 +396,19 @@ body {
 
 /* === Responsive === */
 @media (max-width: 768px) {
+  /* Collapse hero grid to single dominant image on mobile */
+  .hero-section {
+    display: block;
+  }
+  .hero-item--top-right,
+  .hero-item--mid-right,
+  .hero-item--bot-right {
+    display: none;
+  }
+  .hero-item--main {
+    position: absolute;
+    inset: 0;
+  }
   .image-row {
     gap: 0.5rem;
     padding: 0.5rem;
@@ -351,8 +418,7 @@ body {
     max-height: 240px;
   }
   .image-nav {
-    font-size: 1.7rem;
-    padding: 0.4rem 0.8rem;
+    opacity: 0.7;
   }
   h1 { font-size: 1.6rem; }
   h2 { font-size: 1.2rem; }
