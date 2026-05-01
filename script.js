@@ -47,9 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.feature-section').forEach((section) => {
     const img = section.querySelector('.feature-img');
     if (!img) return;
+    const sectionTop = section.offsetTop;
     let rafPending = false;
     const update = () => {
-      const offset = (window.scrollY - section.offsetTop) * 0.15;
+      const offset = (window.scrollY - sectionTop) * 0.15;
       img.style.transform = `translateY(${offset}px)`;
       rafPending = false;
     };
