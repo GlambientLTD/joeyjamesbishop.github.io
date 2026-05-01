@@ -124,28 +124,56 @@ h2, .project-title {
 .work-nav {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  padding: 3rem 2rem 4rem;
+  align-items: flex-start;
+  gap: 5rem;
+  padding: 4rem 2rem 5rem;
 }
 
 .work-nav-btn {
-  display: inline-block;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   color: #fff;
   text-decoration: none;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  letter-spacing: 2px;
+  font-weight: 200;
+  font-size: 2.4rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  border: 1px solid rgba(255,255,255,0.4);
-  padding: 0.8rem 2.2rem;
-  border-radius: 2px;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  padding-bottom: 0.4rem;
+  transition: color 0.3s ease;
 }
 
-.work-nav-btn:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.8);
+/* Animated underline */
+.work-nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.85);
+  transition: width 0.35s ease-in-out;
+}
+
+.work-nav-btn:hover::after {
+  width: 100%;
+}
+
+/* Arrow indicator */
+.nav-arrow {
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 100;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.work-nav-btn:hover .nav-arrow {
+  opacity: 0.85;
+  transform: translateX(0);
 }
 
 /* === Sub-page top navigation === */
@@ -339,13 +367,15 @@ body {
   .work-nav {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 2rem 1.2rem 3rem;
+    gap: 2.2rem;
+    padding: 2.5rem 1.2rem 3.5rem;
   }
   .work-nav-btn {
-    width: 100%;
-    max-width: 280px;
-    text-align: center;
+    font-size: 1.7rem;
+    letter-spacing: 0.14em;
+  }
+  .nav-arrow {
+    font-size: 1.4rem;
   }
   .page-nav {
     padding: 1rem 1.2rem;
