@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Hero parallax: each grid image at its own subtle speed ---
+  // --- Hero parallax: each grid image at its own reduced speed for premium feel ---
   const heroSection = document.querySelector('.hero-section');
   const heroImgs = document.querySelectorAll('.hero-img');
-  // Different rates create a sense of depth; ?? 0.2 is a safe fallback for any extra images
-  const heroRates = [0.25, 0.12, 0.18, 0.15];
+  // Slower, smoother rates give a more cinematic, editorial feel
+  const heroRates = [0.10, 0.05, 0.08, 0.07];
   if (heroSection && heroImgs.length) {
     let rafPending = false;
     const updateHeroParallax = () => {
       const scrolled = window.scrollY;
       if (scrolled <= heroSection.offsetHeight * 1.5) {
         heroImgs.forEach((img, i) => {
-          img.style.transform = `translateY(${scrolled * (heroRates[i] ?? 0.2)}px)`;
+          img.style.transform = `translateY(${scrolled * (heroRates[i] ?? 0.08)}px)`;
         });
       }
       rafPending = false;
@@ -23,15 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  // --- Bio parallax: each .bio-parallax-section moves at ~35% of scroll speed ---
+  // --- Bio parallax: each .bio-parallax-section moves at ~20% of scroll speed with subtle scale-in ---
   document.querySelectorAll('.bio-parallax-section').forEach((section) => {
     const img = section.querySelector('.parallax-image');
     if (!img) return;
     let bioRafPending = false;
     const updateBioParallax = () => {
       const sectionTop = section.offsetTop;
-      const offset = (window.scrollY - sectionTop) * 0.35;
-      img.style.transform = `translateY(${offset}px)`;
+      const sectionH = section.offsetHeight;
+      const offset = (window.scrollY - sectionTop) * 0.20;
+      // Scale from 1.05 to 1.0 as user scrolls through the section
+      const progress = Math.max(0, Math.min(1, (window.scrollY - sectionTop + window.innerHeight) / (sectionH + window.innerHeight)));
+      const scale = 1.05 - 0.05 * progress;
+      img.style.transform = `translateY(${offset}px) scale(${scale})`;
       bioRafPending = false;
     };
     updateBioParallax();
@@ -43,14 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   });
 
-  // --- Feature section parallax (3 full-height sections after tycho) ---
+  // --- Feature section parallax (full-height sections) ---
   document.querySelectorAll('.feature-section').forEach((section) => {
     const img = section.querySelector('.feature-img');
     if (!img) return;
     const sectionTop = section.offsetTop;
     let rafPending = false;
     const update = () => {
-      const offset = (window.scrollY - sectionTop) * 0.15;
+      const offset = (window.scrollY - sectionTop) * 0.12;
       img.style.transform = `translateY(${offset}px)`;
       rafPending = false;
     };
@@ -62,6 +66,34 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, { passive: true });
   });
+
+  // --- Site header: add .scrolled class after user scrolls past hero ---
+  const siteHeader = document.getElementById('site-header');
+  if (siteHeader) {
+    const onHeaderScroll = () => {
+      if (window.scrollY > 60) {
+        siteHeader.classList.add('scrolled');
+      } else {
+        siteHeader.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', onHeaderScroll, { passive: true });
+    onHeaderScroll();
+  }
+
+  // --- Scroll-reveal: fade-in elements with .reveal class ---
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+  }
 
   // --- Create lightbox ---
   const lightbox = document.createElement("div");
