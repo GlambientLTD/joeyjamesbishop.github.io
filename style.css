@@ -423,7 +423,6 @@ body {
     height: 100vh;
   }
   .hero-item--top-right,
-  .hero-item--mid-right,
   .hero-item--bot-right {
     display: none;
   }
@@ -480,7 +479,6 @@ body {
     height: 100vh;
   }
   .hero-item--top-right,
-  .hero-item--mid-right,
   .hero-item--bot-right {
     display: none;
   }
