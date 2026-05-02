@@ -23,15 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  // --- Bio parallax: tycho-16a.jpg moves at ~35% of scroll speed ---
-  const bioParallaxSection = document.getElementById('bio-parallax');
-  const bioParallaxImg = bioParallaxSection?.querySelector('.parallax-image');
-  if (bioParallaxImg && bioParallaxSection) {
+  // --- Bio parallax: each .bio-parallax-section moves at ~35% of scroll speed ---
+  document.querySelectorAll('.bio-parallax-section').forEach((section) => {
+    const img = section.querySelector('.parallax-image');
+    if (!img) return;
     let bioRafPending = false;
     const updateBioParallax = () => {
-      const sectionTop = bioParallaxSection.offsetTop;
+      const sectionTop = section.offsetTop;
       const offset = (window.scrollY - sectionTop) * 0.35;
-      bioParallaxImg.style.transform = `translateY(${offset}px)`;
+      img.style.transform = `translateY(${offset}px)`;
       bioRafPending = false;
     };
     updateBioParallax();
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(updateBioParallax);
       }
     }, { passive: true });
-  }
+  });
 
   // --- Feature section parallax (3 full-height sections after tycho) ---
   document.querySelectorAll('.feature-section').forEach((section) => {
