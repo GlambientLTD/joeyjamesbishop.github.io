@@ -22,7 +22,7 @@ a, button, .image-row-wrapper {
   overflow: hidden;
   display: grid;
   grid-template-columns: 62% 38%;
-  grid-template-rows: repeat(3, calc(100vh / 3));
+  grid-template-rows: repeat(2, calc(100vh / 2));
 }
 
 /* Individual hero cells */
@@ -33,7 +33,7 @@ a, button, .image-row-wrapper {
 
 .hero-item--main {
   grid-column: 1;
-  grid-row: 1 / 4;
+  grid-row: 1 / 3;
 }
 
 .hero-item--top-right {
@@ -41,14 +41,9 @@ a, button, .image-row-wrapper {
   grid-row: 1;
 }
 
-.hero-item--mid-right {
-  grid-column: 2;
-  grid-row: 2;
-}
-
 .hero-item--bot-right {
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 2;
 }
 
 /* Each hero image: oversized for parallax room */
@@ -62,6 +57,13 @@ a, button, .image-row-wrapper {
   object-position: center top;
   will-change: transform;
   display: block;
+}
+
+/* Zoom out right-column hero images so full image is visible instead of cropping into faces */
+.hero-item--top-right .hero-img,
+.hero-item--bot-right .hero-img {
+  object-fit: contain;
+  object-position: center center;
 }
 
 /* Title / bio overlay that sits partially on top of the hero */
@@ -89,7 +91,7 @@ a, button, .image-row-wrapper {
   width: 100%;
   height: 130%;
   object-fit: cover;
-  object-position: left top;
+  object-position: center center;
   will-change: transform;
   display: block;
 }
@@ -468,5 +470,22 @@ body {
   }
   .page-nav {
     padding: 1rem 1.2rem;
+  }
+}
+
+/* === Hide right-column hero images on landscape-oriented mobile devices === */
+@media (orientation: landscape) and (max-height: 600px) {
+  .hero-section {
+    display: block;
+    height: 100vh;
+  }
+  .hero-item--top-right,
+  .hero-item--mid-right,
+  .hero-item--bot-right {
+    display: none;
+  }
+  .hero-item--main {
+    position: absolute;
+    inset: 0;
   }
 }
