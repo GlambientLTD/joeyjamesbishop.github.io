@@ -96,6 +96,18 @@ a, button, .image-row-wrapper {
   display: block;
 }
 
+/* Tycho image: singer with blue hair – keep face slightly right of centre on desktop */
+.tycho-parallax-img {
+  object-position: 65% center;
+}
+
+/* BSHP parallax section: zoom out so less of the face is cropped */
+.bshp-parallax-section .parallax-image {
+  object-fit: contain;
+  top: 0;
+  height: 100%;
+}
+
 /* === Feature full-height image sections (after bio-parallax) === */
 .feature-section {
   position: relative;
@@ -469,6 +481,10 @@ body {
   }
   .page-nav {
     padding: 1rem 1.2rem;
+  }
+  /* Tycho image: centre the singer's face on mobile */
+  .tycho-parallax-img {
+    object-position: 50% center;
   }
 }
 
