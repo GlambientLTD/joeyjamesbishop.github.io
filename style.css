@@ -87,17 +87,23 @@ a, button, .image-row-wrapper {
   object-position: center center;
 }
 
-/* Outer wrapper to center the inline-flex hero intro block */
+/* Outer wrapper – absolutely positioned over the hero section */
 .hero-intro-outer {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
   text-align: center;
-  background: #000;
+  width: 100%;
+  pointer-events: none;
 }
 
-/* Title / bio section below the hero */
+/* Title / bio section overlaid on the hero */
 .hero-intro {
   position: relative;
   z-index: 2;
-  padding: 80px 20px;
+  padding: 40px 20px;
   max-width: 800px;
   margin: 0 auto;
   background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 25%, #000 45%);
@@ -106,6 +112,7 @@ a, button, .image-row-wrapper {
   align-items: center;
   justify-content: center;
   text-align: center;
+  pointer-events: auto;
 }
 
 /* === Bio parallax image section === */
@@ -151,7 +158,7 @@ a, button, .image-row-wrapper {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 35% center;
+  object-position: 25% center;
 }
 
 /* Tycho section height override */
@@ -569,33 +576,48 @@ body {
 }
 .site-header-nav a:hover { color: #fff; }
 
-/* === Section work-label text barrier === */
-.section-work-label {
-  background: #000;
-  padding: 40px 2rem;
+/* === Editorial / Film button strip between images === */
+.section-link {
+  width: 100%;
   text-align: center;
+  padding: 30px 0;
+  position: relative;
+  z-index: 3;
+  margin-top: -60px;
+  margin-bottom: -60px;
 }
-.work-label-eyebrow {
-  display: block;
+
+.section-link a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 2px;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.42em;
-  font-weight: 400;
-  color: rgba(255,255,255,0.38);
+  font-weight: 300;
   text-transform: uppercase;
-  margin-bottom: 1.2rem;
 }
-.work-label-title {
+
+/* === Ballpit image wrapper with overlay button === */
+.image-wrapper {
+  position: relative;
+}
+
+.overlay-button {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.overlay-button a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 2px;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
-  font-weight: 200;
-  letter-spacing: 0.14em;
+  font-weight: 300;
   text-transform: uppercase;
-  color: #fff;
-  margin: 0;
-  border: none;
-  padding: 0;
-  line-height: 1.1;
 }
 
 /* === Scroll-reveal animation === */
@@ -667,12 +689,10 @@ body {
     padding: 1rem 1.2rem;
   }
   /* Tycho image: object-position already handled by #bio-parallax .tycho-parallax-img */
-  .section-work-label {
-    padding: 20px 1.5rem;
-  }
-  .work-label-title {
-    font-size: 2rem;
-    letter-spacing: 0.1em;
+  .section-link {
+    margin-top: -40px;
+    margin-bottom: -40px;
+    padding: 20px 0;
   }
   .site-header {
     padding: 1rem 1.2rem;
