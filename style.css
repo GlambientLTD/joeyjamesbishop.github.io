@@ -87,26 +87,33 @@ a, button, .image-row-wrapper {
   object-position: center center;
 }
 
-/* Outer wrapper – absolutely positioned over the hero section */
+/* Outer wrapper – absolutely positioned at bottom of hero section */
 .hero-intro-outer {
   position: absolute;
-  top: 35%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 2;
-  text-align: center;
   width: 100%;
+  max-width: 900px;
+  padding: 40px 20px;
+  text-align: center;
   pointer-events: none;
+  box-sizing: border-box;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.4),
+    transparent
+  );
 }
 
 /* Title / bio section overlaid on the hero */
 .hero-intro {
   position: relative;
   z-index: 2;
-  padding: 40px 20px;
   max-width: 800px;
   margin: 0 auto;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 25%, #000 45%);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -151,14 +158,14 @@ a, button, .image-row-wrapper {
   display: block;
 }
 
-/* Tycho image: shift focus left to keep the face + mic in frame */
+/* Tycho image: shift focus left to push subject right and keep face in frame */
 #bio-parallax .tycho-parallax-img {
   position: relative;
   top: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 25% center;
+  object-position: 15% center;
 }
 
 /* Tycho section height override */
@@ -576,25 +583,28 @@ body {
 }
 .site-header-nav a:hover { color: #fff; }
 
-/* === Editorial / Film button strip between images === */
-.section-link {
+/* === Premium full-width section bar links === */
+.section-bar {
   width: 100%;
-  text-align: center;
-  padding: 30px 0;
-  position: relative;
-  z-index: 3;
-  margin-top: -60px;
-  margin-bottom: -60px;
+  background-color: #000;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.section-link a {
-  color: white;
+.section-bar a {
+  color: #fff;
   text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 2px;
+  font-size: 13px;
+  letter-spacing: 3px;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
   text-transform: uppercase;
+}
+
+.section-bar a:hover {
+  opacity: 0.7;
 }
 
 /* === Ballpit image wrapper with overlay button === */
@@ -689,11 +699,6 @@ body {
     padding: 1rem 1.2rem;
   }
   /* Tycho image: object-position already handled by #bio-parallax .tycho-parallax-img */
-  .section-link {
-    margin-top: -40px;
-    margin-bottom: -40px;
-    padding: 20px 0;
-  }
   .site-header {
     padding: 1rem 1.2rem;
   }
