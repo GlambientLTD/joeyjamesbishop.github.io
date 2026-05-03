@@ -228,6 +228,7 @@ h2, .project-title {
   line-height: 1.85;
   background: #000;
   padding: 2rem 2rem 3rem;
+  box-sizing: border-box;
 }
 
 .contact-footer {
@@ -620,9 +621,9 @@ body {
   .page-nav {
     padding: 1rem 1.2rem;
   }
-  /* Tycho image: centre the singer's face on mobile */
+  /* Tycho image: shift right on mobile so the blue-haired man's face is visible */
   .tycho-parallax-img {
-    object-position: center top;
+    object-position: right 15%;
   }
   .section-work-label {
     padding: 60px 1.5rem 55px;
