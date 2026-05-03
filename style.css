@@ -87,7 +87,7 @@ a, button, .image-row-wrapper {
   position: relative;
   z-index: 2;
   margin-top: -50vh;
-  padding: 3rem 2rem 5rem;
+  padding: 3rem 5rem 5rem 2rem;
   background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 35%, #000 55%, #000 75%, transparent 100%);
   text-align: center;
 }
@@ -133,10 +133,10 @@ a, button, .image-row-wrapper {
   object-position: center 30%;
 }
 
-/* BSHP / Faye parallax section: standard parallax bleed, contain so face is never cropped */
+/* BSHP / Faye parallax section: contain so face is never cropped, biased to top so face is in view */
 .bshp-parallax-section .parallax-image {
   object-fit: contain;
-  object-position: center center;
+  object-position: center top;
   background-color: #000;
   top: -15%;
   height: 130%;
@@ -222,12 +222,12 @@ h2, .project-title {
   font-size: 1rem;
   font-weight: 300;
   color: rgba(255,255,255,0.75);
-  max-width: 720px;
-  width: 100%;
-  margin: 0 auto;
+  width: calc(100% + 7rem);
+  margin-left: -2rem;
+  margin-right: -5rem;
   line-height: 1.85;
   background: #000;
-  padding: 2rem 2rem 3rem;
+  padding: 2rem 3rem 3rem;
   box-sizing: border-box;
 }
 
@@ -529,7 +529,7 @@ body {
 /* === Section work-label text barrier === */
 .section-work-label {
   background: #000;
-  padding: 90px 2rem 80px;
+  padding: 40px 2rem;
   text-align: center;
 }
 .work-label-eyebrow {
@@ -597,10 +597,15 @@ body {
   h1.subtitle { font-size: 1rem; }
   .hero-intro {
     margin-top: -35vh;
-    padding: 2rem 1.2rem 3rem;
+    padding: 2rem 4rem 3rem 1.2rem;
   }
   .bio-parallax-section {
     height: 55vh;
+  }
+  .bio {
+    width: calc(100% + 5.2rem);
+    margin-left: -1.2rem;
+    margin-right: -4rem;
   }
   .feature-section {
     height: 90vh;
@@ -626,7 +631,7 @@ body {
     object-position: right 15%;
   }
   .section-work-label {
-    padding: 60px 1.5rem 55px;
+    padding: 20px 1.5rem;
   }
   .work-label-title {
     font-size: 2rem;
