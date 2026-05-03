@@ -2,6 +2,11 @@ html {
   scroll-behavior: smooth;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -82,14 +87,21 @@ a, button, .image-row-wrapper {
   object-position: center center;
 }
 
-/* Title / bio overlay that sits partially on top of the hero */
+/* Outer wrapper to center the inline-flex hero intro block */
+.hero-intro-outer {
+  text-align: center;
+  background: #000;
+}
+
+/* Title / bio section below the hero */
 .hero-intro {
   position: relative;
   z-index: 2;
-  margin-top: -50vh;
-  padding: 3rem 2rem;
+  padding: 80px 20px;
+  max-width: 800px;
+  margin: 0 auto;
   background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 25%, #000 45%);
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -133,12 +145,23 @@ a, button, .image-row-wrapper {
 }
 
 /* Tycho image: shift focus left to keep the face + mic in frame */
-.tycho-parallax-img {
+#bio-parallax .tycho-parallax-img {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: 35% center;
+}
+
+/* Tycho section height override */
+#bio-parallax {
+  height: 60vh;
 }
 
 /* BSHP / Faye parallax section: show full image without cropping */
 .bshp-parallax-section {
+  display: block;
   height: auto;
   overflow: visible;
 }
@@ -616,8 +639,10 @@ body {
   h2 { font-size: 1.2rem; }
   h1.subtitle { font-size: 1rem; }
   .hero-intro {
-    margin-top: -35vh;
-    padding: 2rem 1.2rem;
+    padding: 40px 1.2rem;
+  }
+  #bio-parallax {
+    height: 45vh;
   }
   .bio-parallax-section {
     height: 55vh;
@@ -641,10 +666,7 @@ body {
   .page-nav {
     padding: 1rem 1.2rem;
   }
-  /* Tycho image: shift right on mobile so the blue-haired man's face is visible */
-  .tycho-parallax-img {
-    object-position: 35% center;
-  }
+  /* Tycho image: object-position already handled by #bio-parallax .tycho-parallax-img */
   .section-work-label {
     padding: 20px 1.5rem;
   }
